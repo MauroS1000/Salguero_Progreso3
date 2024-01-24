@@ -7,6 +7,7 @@ namespace Salguero_Progreso3;
 public partial class MainPage : ContentPage
 {
     private int posicionRespuestaCorrecta;
+    private string currentQuestion;
     public MainPage()
     {
         InitializeComponent();
@@ -28,9 +29,10 @@ public partial class MainPage : ContentPage
                     if (rootObject.response_code == 0 && rootObject.results != null && rootObject.results.Length > 0)
                     {
                         var pregunta = rootObject.results[0];
+                        currentQuestion = pregunta;
 
-                        
-                        var respuestas = pregunta.incorrect_answers.ToList();
+                      var respuestas = pregunta.incorrect_answers.ToList();
+
                         respuestas.Add(pregunta.correct_answer);
                         respuestas = respuestas.OrderBy(x => Guid.NewGuid()).ToList();
 
@@ -55,12 +57,9 @@ public partial class MainPage : ContentPage
     {
         bool isCorrect = (posicionRespuestaCorrecta + 1 == selectedAnswer);
 
-        // Actualizar la interfaz de usuario según sea necesario
-
-        // Guardar el resultado en la base de datos
         var resultModel = new ResultModel
         {
-            QuestionId = /* Id de la pregunta actual, si es relevante */,
+            Question = currentQuestion,
             IsCorrect = isCorrect
         };
 

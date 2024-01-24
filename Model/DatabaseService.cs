@@ -24,12 +24,12 @@ namespace Salguero_Progreso3.Model
             database.CreateTable<ResultModel>();
         }
 
-        List<ResultModel> GetResults()
+        public List<ResultModel> GetResults()
         {
             return database.Table<ResultModel>().ToList();
         }
 
-        void AddResult(ResultModel result)
+        public void AddResult(ResultModel result)
         {
             database.Insert(result);
         }

@@ -7,11 +7,11 @@ using SQLite;
 
 namespace Salguero_Progreso3.Model
 {
-    internal class ResultModel
+    public class ResultModel
     {
         public int Id { get; set; }
 
-        public int QuestionId { get; set; }
+        public string Question { get; set; }
 
         public bool IsCorrect { get; set; }
     }
