@@ -53,14 +53,19 @@ public partial class MainPage : ContentPage
 
     private void CheckAnswer(int selectedAnswer)
     {
-        if (posicionRespuestaCorrecta + 1 == selectedAnswer)
+        bool isCorrect = (posicionRespuestaCorrecta + 1 == selectedAnswer);
+
+        // Actualizar la interfaz de usuario según sea necesario
+
+        // Guardar el resultado en la base de datos
+        var resultModel = new ResultModel
         {
-            result.Text = "Perfect!";
-        }
-        else
-        {
-            result.Text = $"Oops, correct answer was {posicionRespuestaCorrecta + 1}";
-        }
+            QuestionId = /* Id de la pregunta actual, si es relevante */,
+            IsCorrect = isCorrect
+        };
+
+        var databaseService = new DatabaseService("your_database_path.db");
+        databaseService.AddResult(resultModel);
     }
 
     private void Button_Clicked1(object sender, EventArgs e)
